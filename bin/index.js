@@ -1,18 +1,24 @@
 #!/usr/bin/env node
-var program = require('commander');
+const program = require('commander'),
+ appInfo = require('./../package.json'),
+ action = require('../lib/index.js');
+ color = require('colors-cli/toxic');
 program
     // .allowUnknownOption()//不报错误
-    .version('1.0.0')
-    .usage('hello daji [options] <package>')
+    .version(appInfo.version)
+    .usage('啊~~~被玩坏了..... [options] <package>')
     .parse(process.argv);
 
 program
-    .command('resume [cmd]')
+    .command('action [cmd]')
     .alias('rs')
-    .description('hello Daji '.x29)
-    .option("-b, --basicinfo [type]", "测试")
+    .description('this is my test project '.x29)
+    .option("-b, --basicinfo [type]", "测试1")
+    .option("-t, --test [type]", "测试2")
     .action(function(cmd, options){
-      console.log('12312')
+      const a = typeof opations.name === 'string'?opations.name:''
+      action(cmd,opation);
+      console.log('开始执行action')
     }).on('--help', function() {
  			console.log('welcome Daji');
 
@@ -21,7 +27,7 @@ program
 //默认不传参数输出help
 if (!process.argv[2]) {
     program.help();
-    console.log('test');
+    console.log('test 木有参数');
 }
 
 program.parse(process.argv);

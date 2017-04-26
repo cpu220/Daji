@@ -1,6 +1,6 @@
 {
   "name": "daji",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "daji":"bin/index.js"
   },
   "dependencies": {
+    "colors-cli": "^1.0.7",
     "commander": "^2.8.1"
   }
 }
