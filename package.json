@@ -1,7 +1,7 @@
 {
   "name": "daji",
   "version": "1.0.0",
-  "description": "",
+  "description": "Belial220",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,12 +14,10 @@
   "engines" : {
      "node" : ">=4.4.4"
   },
+  "bin":{
+    "daji":"bin/daji.js"
+  },
   "devDependencies": {
-    "gulp": "~3.9.0", 
-    "inquirer":"*",
-    "minimist":"*",
-    "nshell":"*",
-    "cpwcom":"*"
 
   }
 
