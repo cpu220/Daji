@@ -12,7 +12,7 @@ program
     .description('hello Daji '.x29)
     .option("-b, --basicinfo [type]", "测试")
     .action(function(cmd, options){
-       
+
     }).on('--help', function() {
  			console.log('welcome Daji');
 
@@ -21,7 +21,7 @@ program
 //默认不传参数输出help
 if (!process.argv[2]) {
     program.help();
-    console.log();
+    console.log('test');
 }
 
 program.parse(process.argv);
