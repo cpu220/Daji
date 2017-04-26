@@ -1,24 +1,14 @@
 {
   "name": "daji",
   "version": "1.0.0",
-  "description": "Belial220",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
-  "engines" : {
-     "node" : ">=4.4.4"
-  },
+  "author": "cpw220",
+  "license": "ISC", 
   "bin":{
     "daji":"bin/daji.js"
-  },
-  "devDependencies": {
-
   }
-
 }
