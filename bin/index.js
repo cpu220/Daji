@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const program = require('commander'),
  appInfo = require('./../package.json'),
- action = require('../lib/index.js');
+ project = require('../lib/project.js');
  color = require('colors-cli/toxic');
 program
     // .allowUnknownOption()//不报错误
@@ -10,14 +10,14 @@ program
     .parse(process.argv);
 
 program
-    .command('action [cmd]')
+    .command('project [cmd]')
     .alias('rs')
     .description('this is my test project '.x29)
-    .option("-b, --basicinfo [type]", "测试1")
-    .option("-t, --test [type]", "测试2")
+    .option("-i, --init [type]", "创建工程")
+    .option("-t, --test [type]", "测试")
     .action(function(cmd, options){
       const a = typeof options.name === 'string'?options.name:''
-      action(cmd,options);
+      project(cmd,options);
     }).on('--help', function() {
  			console.log('welcome Daji');
 
