@@ -16,8 +16,8 @@ program
     .option("-b, --basicinfo [type]", "测试1")
     .option("-t, --test [type]", "测试2")
     .action(function(cmd, options){
-      const a = typeof opations.name === 'string'?opations.name:''
-      action(cmd,opation);
+      const a = typeof options.name === 'string'?options.name:''
+      action(cmd,options);
       console.log('开始执行action')
     }).on('--help', function() {
  			console.log('welcome Daji');
