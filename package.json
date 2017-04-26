@@ -1,0 +1,26 @@
+{
+  "name": "daji",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "engines" : {
+     "node" : ">=4.4.4"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0", 
+    "inquirer":"*",
+    "minimist":"*",
+    "nshell":"*",
+    "cpwcom":"*"
+
+  }
+
+}
