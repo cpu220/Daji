@@ -6,7 +6,7 @@ const program = require('commander'),
 program
     // .allowUnknownOption()//不报错误
     .version(appInfo.version)
-    .usage('啊~~~被玩坏了..... [options] <package>')
+    .usage('妲己是个小能手，什么都可以做 [options] <package>')
     .parse(process.argv);
 
 program
@@ -17,7 +17,7 @@ program
     .option("-t, --test [type]", "测试2")
     .action(function(cmd, options){
       const a = typeof options.name === 'string'?options.name:''
-      action(cmd,options); 
+      action(cmd,options);
     }).on('--help', function() {
  			console.log('welcome Daji');
 
