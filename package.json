@@ -9,6 +9,9 @@
   "author": "cpw220",
   "license": "ISC",
   "bin":{
-    "daji":"bin/daji.js"
+    "daji":"bin/index.js"
+  },
+  "dependencies": { 
+    "commander": "^2.8.1"
   }
 }
