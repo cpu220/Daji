@@ -12,7 +12,7 @@ program
     .description('hello Daji '.x29)
     .option("-b, --basicinfo [type]", "测试")
     .action(function(cmd, options){
-
+      console.log('12312')
     }).on('--help', function() {
  			console.log('welcome Daji');
 

@@ -1,506 +1,103 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   'daji',
-1 verbose cli   '-g' ]
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
 2 info using npm@3.10.8
 3 info using node@v6.9.1
-4 silly loadCurrentTree Starting
-5 silly install loadCurrentTree
-6 silly install readGlobalPackageData
-7 silly fetchPackageMetaData daji
-8 silly fetchNamedPackageData daji
-9 silly mapToRegistry name daji
-10 silly mapToRegistry using default registry
-11 silly mapToRegistry registry https://registry.npmjs.org/
-12 silly mapToRegistry data Result {
-12 silly mapToRegistry   raw: 'daji',
-12 silly mapToRegistry   scope: null,
-12 silly mapToRegistry   escapedName: 'daji',
-12 silly mapToRegistry   name: 'daji',
-12 silly mapToRegistry   rawSpec: '',
-12 silly mapToRegistry   spec: 'latest',
-12 silly mapToRegistry   type: 'tag' }
-13 silly mapToRegistry uri https://registry.npmjs.org/daji
-14 verbose request uri https://registry.npmjs.org/daji
-15 verbose request no auth needed
-16 info attempt registry request try #1 at 3:03:41 PM
-17 verbose request using bearer token for auth
-18 verbose request id 7b0eb335968d5eef
-19 verbose etag W/"5900457a-1554"
-20 verbose lastModified Wed, 26 Apr 2017 07:00:10 GMT
-21 http request GET https://registry.npmjs.org/daji
-22 http 304 https://registry.npmjs.org/daji
-23 verbose headers { server: 'nginx/1.10.1',
-23 verbose headers   'last-modified': 'Wed, 26 Apr 2017 07:00:10 GMT',
-23 verbose headers   etag: '"5900457a-1554"',
-23 verbose headers   'cache-control': 'max-age=300',
-23 verbose headers   'accept-ranges': 'bytes',
-23 verbose headers   date: 'Wed, 26 Apr 2017 07:03:40 GMT',
-23 verbose headers   via: '1.1 varnish',
-23 verbose headers   connection: 'keep-alive',
-23 verbose headers   'x-served-by': 'cache-nrt6135-NRT',
-23 verbose headers   'x-cache': 'MISS',
-23 verbose headers   'x-cache-hits': '0',
-23 verbose headers   'x-timer': 'S1493190221.821145,VS0,VE110',
-23 verbose headers   vary: 'Accept-Encoding' }
-24 silly get cb [ 304,
-24 silly get   { server: 'nginx/1.10.1',
-24 silly get     'last-modified': 'Wed, 26 Apr 2017 07:00:10 GMT',
-24 silly get     etag: '"5900457a-1554"',
-24 silly get     'cache-control': 'max-age=300',
-24 silly get     'accept-ranges': 'bytes',
-24 silly get     date: 'Wed, 26 Apr 2017 07:03:40 GMT',
-24 silly get     via: '1.1 varnish',
-24 silly get     connection: 'keep-alive',
-24 silly get     'x-served-by': 'cache-nrt6135-NRT',
-24 silly get     'x-cache': 'MISS',
-24 silly get     'x-cache-hits': '0',
-24 silly get     'x-timer': 'S1493190221.821145,VS0,VE110',
-24 silly get     vary: 'Accept-Encoding' } ]
-25 verbose etag https://registry.npmjs.org/daji from cache
-26 verbose get saving daji to /Users/cpw/.npm/registry.npmjs.org/daji/.cache.json
-27 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
-28 silly install normalizeTree
-29 silly loadCurrentTree Finishing
-30 silly loadIdealTree Starting
-31 silly install loadIdealTree
-32 silly cloneCurrentTree Starting
-33 silly install cloneCurrentTreeToIdealTree
-34 silly cloneCurrentTree Finishing
-35 silly loadShrinkwrap Starting
-36 silly install loadShrinkwrap
-37 silly loadShrinkwrap Finishing
-38 silly loadAllDepsIntoIdealTree Starting
-39 silly install loadAllDepsIntoIdealTree
-40 silly resolveWithNewModule daji@1.0.5 checking installable status
-41 silly cache add args [ 'daji', null ]
-42 verbose cache add spec daji
-43 silly cache add parsed spec Result {
-43 silly cache add   raw: 'daji',
-43 silly cache add   scope: null,
-43 silly cache add   escapedName: 'daji',
-43 silly cache add   name: 'daji',
-43 silly cache add   rawSpec: '',
-43 silly cache add   spec: 'latest',
-43 silly cache add   type: 'tag' }
-44 silly addNamed daji@latest
-45 verbose addNamed "latest" is being treated as a dist-tag for daji
-46 info addNameTag [ 'daji', 'latest' ]
-47 silly mapToRegistry name daji
-48 silly mapToRegistry using default registry
-49 silly mapToRegistry registry https://registry.npmjs.org/
-50 silly mapToRegistry data Result {
-50 silly mapToRegistry   raw: 'daji',
-50 silly mapToRegistry   scope: null,
-50 silly mapToRegistry   escapedName: 'daji',
-50 silly mapToRegistry   name: 'daji',
-50 silly mapToRegistry   rawSpec: '',
-50 silly mapToRegistry   spec: 'latest',
-50 silly mapToRegistry   type: 'tag' }
-51 silly mapToRegistry uri https://registry.npmjs.org/daji
-52 verbose addNameTag registry:https://registry.npmjs.org/daji not in flight; fetching
-53 verbose get https://registry.npmjs.org/daji not expired, no request
-54 silly addNameTag next cb for daji with tag latest
-55 silly addNamed daji@1.0.5
-56 verbose addNamed "1.0.5" is a plain semver version for daji
-57 silly cache afterAdd daji@1.0.5
-58 verbose afterAdd /Users/cpw/.npm/daji/1.0.5/package/package.json not in flight; writing
-59 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
-60 verbose afterAdd /Users/cpw/.npm/daji/1.0.5/package/package.json written
-61 silly fetchNamedPackageData commander
-62 silly mapToRegistry name commander
-63 silly mapToRegistry using default registry
-64 silly mapToRegistry registry https://registry.npmjs.org/
-65 silly mapToRegistry data Result {
-65 silly mapToRegistry   raw: 'commander',
-65 silly mapToRegistry   scope: null,
-65 silly mapToRegistry   escapedName: 'commander',
-65 silly mapToRegistry   name: 'commander',
-65 silly mapToRegistry   rawSpec: '',
-65 silly mapToRegistry   spec: 'latest',
-65 silly mapToRegistry   type: 'tag' }
-66 silly mapToRegistry uri https://registry.npmjs.org/commander
-67 verbose request uri https://registry.npmjs.org/commander
-68 verbose request no auth needed
-69 info attempt registry request try #1 at 3:03:42 PM
-70 verbose request using bearer token for auth
-71 verbose etag W/"59002149-102e0"
-72 verbose lastModified Wed, 26 Apr 2017 04:25:45 GMT
-73 http request GET https://registry.npmjs.org/commander
-74 http 304 https://registry.npmjs.org/commander
-75 verbose headers { server: 'nginx/1.10.1',
-75 verbose headers   'last-modified': 'Wed, 26 Apr 2017 04:25:45 GMT',
-75 verbose headers   etag: '"59002149-102e0"',
-75 verbose headers   'cache-control': 'max-age=300',
-75 verbose headers   'accept-ranges': 'bytes',
-75 verbose headers   date: 'Wed, 26 Apr 2017 07:03:41 GMT',
-75 verbose headers   via: '1.1 varnish',
-75 verbose headers   connection: 'keep-alive',
-75 verbose headers   'x-served-by': 'cache-nrt6135-NRT',
-75 verbose headers   'x-cache': 'MISS',
-75 verbose headers   'x-cache-hits': '0',
-75 verbose headers   'x-timer': 'S1493190221.241302,VS0,VE110',
-75 verbose headers   vary: 'Accept-Encoding' }
-76 silly get cb [ 304,
-76 silly get   { server: 'nginx/1.10.1',
-76 silly get     'last-modified': 'Wed, 26 Apr 2017 04:25:45 GMT',
-76 silly get     etag: '"59002149-102e0"',
-76 silly get     'cache-control': 'max-age=300',
-76 silly get     'accept-ranges': 'bytes',
-76 silly get     date: 'Wed, 26 Apr 2017 07:03:41 GMT',
-76 silly get     via: '1.1 varnish',
-76 silly get     connection: 'keep-alive',
-76 silly get     'x-served-by': 'cache-nrt6135-NRT',
-76 silly get     'x-cache': 'MISS',
-76 silly get     'x-cache-hits': '0',
-76 silly get     'x-timer': 'S1493190221.241302,VS0,VE110',
-76 silly get     vary: 'Accept-Encoding' } ]
-77 verbose etag https://registry.npmjs.org/commander from cache
-78 verbose get saving commander to /Users/cpw/.npm/registry.npmjs.org/commander/.cache.json
-79 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
-80 silly resolveWithNewModule commander@2.9.0 checking installable status
-81 silly cache add args [ 'commander@^2.8.1', null ]
-82 verbose cache add spec commander@^2.8.1
-83 silly cache add parsed spec Result {
-83 silly cache add   raw: 'commander@^2.8.1',
-83 silly cache add   scope: null,
-83 silly cache add   escapedName: 'commander',
-83 silly cache add   name: 'commander',
-83 silly cache add   rawSpec: '^2.8.1',
-83 silly cache add   spec: '>=2.8.1 <3.0.0',
-83 silly cache add   type: 'range' }
-84 silly addNamed commander@>=2.8.1 <3.0.0
-85 verbose addNamed ">=2.8.1 <3.0.0" is a valid semver range for commander
-86 silly addNameRange { name: 'commander', range: '>=2.8.1 <3.0.0', hasData: false }
-87 silly mapToRegistry name commander
-88 silly mapToRegistry using default registry
-89 silly mapToRegistry registry https://registry.npmjs.org/
-90 silly mapToRegistry data Result {
-90 silly mapToRegistry   raw: 'commander',
-90 silly mapToRegistry   scope: null,
-90 silly mapToRegistry   escapedName: 'commander',
-90 silly mapToRegistry   name: 'commander',
-90 silly mapToRegistry   rawSpec: '',
-90 silly mapToRegistry   spec: 'latest',
-90 silly mapToRegistry   type: 'tag' }
-91 silly mapToRegistry uri https://registry.npmjs.org/commander
-92 verbose addNameRange registry:https://registry.npmjs.org/commander not in flight; fetching
-93 verbose get https://registry.npmjs.org/commander not expired, no request
-94 silly addNameRange number 2 { name: 'commander', range: '>=2.8.1 <3.0.0', hasData: true }
-95 silly addNameRange versions [ 'commander',
-95 silly addNameRange   [ '0.0.1',
-95 silly addNameRange     '0.0.3',
-95 silly addNameRange     '0.0.4',
-95 silly addNameRange     '0.0.5',
-95 silly addNameRange     '0.1.0',
-95 silly addNameRange     '0.2.0',
-95 silly addNameRange     '0.2.1',
-95 silly addNameRange     '0.3.0',
-95 silly addNameRange     '0.3.1',
-95 silly addNameRange     '0.3.2',
-95 silly addNameRange     '0.3.3',
-95 silly addNameRange     '0.4.0',
-95 silly addNameRange     '0.4.1',
-95 silly addNameRange     '0.4.2',
-95 silly addNameRange     '0.4.3',
-95 silly addNameRange     '0.5.0',
-95 silly addNameRange     '0.5.1',
-95 silly addNameRange     '0.6.0',
-95 silly addNameRange     '0.6.1',
-95 silly addNameRange     '0.5.2',
-95 silly addNameRange     '1.0.0',
-95 silly addNameRange     '1.0.1',
-95 silly addNameRange     '1.0.2',
-95 silly addNameRange     '1.0.3',
-95 silly addNameRange     '1.0.4',
-95 silly addNameRange     '1.0.5',
-95 silly addNameRange     '1.1.0',
-95 silly addNameRange     '1.1.1',
-95 silly addNameRange     '1.2.0',
-95 silly addNameRange     '1.3.0',
-95 silly addNameRange     '1.3.1',
-95 silly addNameRange     '1.3.2',
-95 silly addNameRange     '2.0.0',
-95 silly addNameRange     '2.1.0',
-95 silly addNameRange     '2.2.0',
-95 silly addNameRange     '2.3.0',
-95 silly addNameRange     '2.4.0',
-95 silly addNameRange     '2.5.0',
-95 silly addNameRange     '2.5.1',
-95 silly addNameRange     '2.6.0',
-95 silly addNameRange     '2.7.0',
-95 silly addNameRange     '2.7.1',
-95 silly addNameRange     '2.8.0',
-95 silly addNameRange     '2.8.1',
-95 silly addNameRange     '2.9.0' ] ]
-96 silly addNamed commander@2.9.0
-97 verbose addNamed "2.9.0" is a plain semver version for commander
-98 silly cache afterAdd commander@2.9.0
-99 verbose afterAdd /Users/cpw/.npm/commander/2.9.0/package/package.json not in flight; writing
-100 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
-101 verbose afterAdd /Users/cpw/.npm/commander/2.9.0/package/package.json written
-102 silly fetchNamedPackageData graceful-readlink
-103 silly mapToRegistry name graceful-readlink
-104 silly mapToRegistry using default registry
-105 silly mapToRegistry registry https://registry.npmjs.org/
-106 silly mapToRegistry data Result {
-106 silly mapToRegistry   raw: 'graceful-readlink',
-106 silly mapToRegistry   scope: null,
-106 silly mapToRegistry   escapedName: 'graceful-readlink',
-106 silly mapToRegistry   name: 'graceful-readlink',
-106 silly mapToRegistry   rawSpec: '',
-106 silly mapToRegistry   spec: 'latest',
-106 silly mapToRegistry   type: 'tag' }
-107 silly mapToRegistry uri https://registry.npmjs.org/graceful-readlink
-108 verbose request uri https://registry.npmjs.org/graceful-readlink
-109 verbose request no auth needed
-110 info attempt registry request try #1 at 3:03:42 PM
-111 verbose request using bearer token for auth
-112 verbose etag W/"585ef90e-c1b"
-113 verbose lastModified Sat, 24 Dec 2016 22:39:10 GMT
-114 http request GET https://registry.npmjs.org/graceful-readlink
-115 http 304 https://registry.npmjs.org/graceful-readlink
-116 verbose headers { server: 'nginx/1.10.1',
-116 verbose headers   'last-modified': 'Sat, 24 Dec 2016 22:39:10 GMT',
-116 verbose headers   etag: '"585ef90e-c1b"',
-116 verbose headers   'cache-control': 'max-age=300',
-116 verbose headers   'accept-ranges': 'bytes',
-116 verbose headers   date: 'Wed, 26 Apr 2017 07:03:41 GMT',
-116 verbose headers   via: '1.1 varnish',
-116 verbose headers   connection: 'keep-alive',
-116 verbose headers   'x-served-by': 'cache-nrt6135-NRT',
-116 verbose headers   'x-cache': 'MISS',
-116 verbose headers   'x-cache-hits': '0',
-116 verbose headers   'x-timer': 'S1493190222.632711,VS0,VE138',
-116 verbose headers   vary: 'Accept-Encoding' }
-117 silly get cb [ 304,
-117 silly get   { server: 'nginx/1.10.1',
-117 silly get     'last-modified': 'Sat, 24 Dec 2016 22:39:10 GMT',
-117 silly get     etag: '"585ef90e-c1b"',
-117 silly get     'cache-control': 'max-age=300',
-117 silly get     'accept-ranges': 'bytes',
-117 silly get     date: 'Wed, 26 Apr 2017 07:03:41 GMT',
-117 silly get     via: '1.1 varnish',
-117 silly get     connection: 'keep-alive',
-117 silly get     'x-served-by': 'cache-nrt6135-NRT',
-117 silly get     'x-cache': 'MISS',
-117 silly get     'x-cache-hits': '0',
-117 silly get     'x-timer': 'S1493190222.632711,VS0,VE138',
-117 silly get     vary: 'Accept-Encoding' } ]
-118 verbose etag https://registry.npmjs.org/graceful-readlink from cache
-119 verbose get saving graceful-readlink to /Users/cpw/.npm/registry.npmjs.org/graceful-readlink/.cache.json
-120 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
-121 silly resolveWithNewModule graceful-readlink@1.0.1 checking installable status
-122 silly cache add args [ 'graceful-readlink@>= 1.0.0', null ]
-123 verbose cache add spec graceful-readlink@>= 1.0.0
-124 silly cache add parsed spec Result {
-124 silly cache add   raw: 'graceful-readlink@>= 1.0.0',
-124 silly cache add   scope: null,
-124 silly cache add   escapedName: 'graceful-readlink',
-124 silly cache add   name: 'graceful-readlink',
-124 silly cache add   rawSpec: '>= 1.0.0',
-124 silly cache add   spec: '>=1.0.0',
-124 silly cache add   type: 'range' }
-125 silly addNamed graceful-readlink@>=1.0.0
-126 verbose addNamed ">=1.0.0" is a valid semver range for graceful-readlink
-127 silly addNameRange { name: 'graceful-readlink', range: '>=1.0.0', hasData: false }
-128 silly mapToRegistry name graceful-readlink
-129 silly mapToRegistry using default registry
-130 silly mapToRegistry registry https://registry.npmjs.org/
-131 silly mapToRegistry data Result {
-131 silly mapToRegistry   raw: 'graceful-readlink',
-131 silly mapToRegistry   scope: null,
-131 silly mapToRegistry   escapedName: 'graceful-readlink',
-131 silly mapToRegistry   name: 'graceful-readlink',
-131 silly mapToRegistry   rawSpec: '',
-131 silly mapToRegistry   spec: 'latest',
-131 silly mapToRegistry   type: 'tag' }
-132 silly mapToRegistry uri https://registry.npmjs.org/graceful-readlink
-133 verbose addNameRange registry:https://registry.npmjs.org/graceful-readlink not in flight; fetching
-134 verbose get https://registry.npmjs.org/graceful-readlink not expired, no request
-135 silly addNameRange number 2 { name: 'graceful-readlink', range: '>=1.0.0', hasData: true }
-136 silly addNameRange versions [ 'graceful-readlink', [ '1.0.0', '1.0.1' ] ]
-137 silly addNamed graceful-readlink@1.0.1
-138 verbose addNamed "1.0.1" is a plain semver version for graceful-readlink
-139 silly cache afterAdd graceful-readlink@1.0.1
-140 verbose afterAdd /Users/cpw/.npm/graceful-readlink/1.0.1/package/package.json not in flight; writing
-141 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
-142 verbose afterAdd /Users/cpw/.npm/graceful-readlink/1.0.1/package/package.json written
-143 silly loadAllDepsIntoIdealTree Finishing
-144 silly loadIdealTree Finishing
-145 silly currentTree lib
-146 silly idealTree lib
-146 silly idealTree └─┬ daji@1.0.5
-146 silly idealTree   ├── commander@2.9.0
-146 silly idealTree   └── graceful-readlink@1.0.1
-147 silly generateActionsToTake Starting
-148 silly install generateActionsToTake
-149 silly generateActionsToTake Finishing
-150 silly diffTrees action count 3
-151 silly diffTrees add graceful-readlink@1.0.1
-152 silly diffTrees add commander@2.9.0
-153 silly diffTrees add daji@1.0.5
-154 silly decomposeActions action count 24
-155 silly decomposeActions fetch graceful-readlink@1.0.1
-156 silly decomposeActions extract graceful-readlink@1.0.1
-157 silly decomposeActions test graceful-readlink@1.0.1
-158 silly decomposeActions preinstall graceful-readlink@1.0.1
-159 silly decomposeActions build graceful-readlink@1.0.1
-160 silly decomposeActions install graceful-readlink@1.0.1
-161 silly decomposeActions postinstall graceful-readlink@1.0.1
-162 silly decomposeActions finalize graceful-readlink@1.0.1
-163 silly decomposeActions fetch commander@2.9.0
-164 silly decomposeActions extract commander@2.9.0
-165 silly decomposeActions test commander@2.9.0
-166 silly decomposeActions preinstall commander@2.9.0
-167 silly decomposeActions build commander@2.9.0
-168 silly decomposeActions install commander@2.9.0
-169 silly decomposeActions postinstall commander@2.9.0
-170 silly decomposeActions finalize commander@2.9.0
-171 silly decomposeActions fetch daji@1.0.5
-172 silly decomposeActions extract daji@1.0.5
-173 silly decomposeActions test daji@1.0.5
-174 silly decomposeActions preinstall daji@1.0.5
-175 silly decomposeActions build daji@1.0.5
-176 silly decomposeActions install daji@1.0.5
-177 silly decomposeActions postinstall daji@1.0.5
-178 silly decomposeActions finalize daji@1.0.5
-179 silly runTopLevelLifecycles Starting
-180 silly executeActions Starting
-181 silly install executeActions
-182 silly doSerial global-install 0
-183 silly doParallel fetch 3
-184 verbose correctMkdir /Users/cpw/.npm/_locks correctMkdir not in flight; initializing
-185 verbose lock using /Users/cpw/.npm/_locks/staging-3a08f0df5026584d.lock for /usr/local/lib/node_modules/.staging
-186 silly doParallel extract 3
-187 silly extract graceful-readlink@1.0.1
-188 silly extract commander@2.9.0
-189 silly extract daji@1.0.5
-190 verbose unbuild lib/node_modules/.staging/graceful-readlink-88cd8a18
-191 verbose unbuild lib/node_modules/.staging/commander-c4499538
-192 verbose unbuild lib/node_modules/.staging/daji-c9844e1d
-193 silly gentlyRm /usr/local/lib/node_modules/.staging/graceful-readlink-88cd8a18 is being purged from base /usr/local
-194 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/graceful-readlink-88cd8a18
-195 silly gentlyRm /usr/local/lib/node_modules/.staging/commander-c4499538 is being purged from base /usr/local
-196 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/commander-c4499538
-197 verbose tar unpack /Users/cpw/.npm/graceful-readlink/1.0.1/package.tgz
-198 verbose tar unpacking to /usr/local/lib/node_modules/.staging/graceful-readlink-88cd8a18
-199 silly gentlyRm /usr/local/lib/node_modules/.staging/graceful-readlink-88cd8a18 is being purged
-200 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/graceful-readlink-88cd8a18
-201 verbose tar unpack /Users/cpw/.npm/commander/2.9.0/package.tgz
-202 verbose tar unpacking to /usr/local/lib/node_modules/.staging/commander-c4499538
-203 silly gentlyRm /usr/local/lib/node_modules/.staging/commander-c4499538 is being purged
-204 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/commander-c4499538
-205 silly gentlyRm /usr/local/lib/node_modules/.staging/daji-c9844e1d is being purged from base /usr/local
-206 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/daji-c9844e1d
-207 silly gunzTarPerm modes [ '755', '644' ]
-208 silly gunzTarPerm modes [ '755', '644' ]
-209 verbose tar unpack /Users/cpw/.npm/daji/1.0.5/package.tgz
-210 verbose tar unpacking to /usr/local/lib/node_modules/.staging/daji-c9844e1d
-211 silly gentlyRm /usr/local/lib/node_modules/.staging/daji-c9844e1d is being purged
-212 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/daji-c9844e1d
-213 silly gunzTarPerm modes [ '755', '644' ]
-214 silly gunzTarPerm extractEntry package.json
-215 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
-216 silly gunzTarPerm extractEntry package.json
-217 silly gunzTarPerm extractEntry package.json
-218 silly gunzTarPerm extractEntry .npmignore
-219 silly gunzTarPerm modified mode [ '.npmignore', 436, 420 ]
-220 silly gunzTarPerm extractEntry README.md
-221 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
-222 silly gunzTarPerm extractEntry LICENSE
-223 silly gunzTarPerm extractEntry index.js
-224 silly gunzTarPerm extractEntry .npmignore
-225 silly gunzTarPerm extractEntry bin/index.js
-226 silly gunzTarPerm extractEntry LICENSE
-227 silly gunzTarPerm modified mode [ 'LICENSE', 436, 420 ]
-228 silly gunzTarPerm extractEntry index.js
-229 silly gunzTarPerm modified mode [ 'index.js', 436, 420 ]
-230 silly gunzTarPerm extractEntry lib/index.js
-231 silly gunzTarPerm extractEntry readme.md
-232 silly gunzTarPerm extractEntry Readme.md
-233 silly gunzTarPerm extractEntry .travis.yml
-234 silly gunzTarPerm modified mode [ '.travis.yml', 436, 420 ]
-235 silly gunzTarPerm extractEntry History.md
-236 silly gentlyRm /usr/local/lib/node_modules/.staging/daji-c9844e1d/node_modules is being purged
-237 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/daji-c9844e1d/node_modules
-238 silly gentlyRm /usr/local/lib/node_modules/.staging/commander-c4499538/node_modules is being purged
-239 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/commander-c4499538/node_modules
-240 silly gentlyRm /usr/local/lib/node_modules/.staging/graceful-readlink-88cd8a18/node_modules is being purged
-241 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/.staging/graceful-readlink-88cd8a18/node_modules
-242 silly doParallel preinstall 3
-243 silly preinstall graceful-readlink@1.0.1 /usr/local/lib/node_modules/.staging/graceful-readlink-88cd8a18
-244 info lifecycle graceful-readlink@1.0.1~preinstall: graceful-readlink@1.0.1
-245 silly preinstall commander@2.9.0 /usr/local/lib/node_modules/.staging/commander-c4499538
-246 info lifecycle commander@2.9.0~preinstall: commander@2.9.0
-247 silly preinstall daji@1.0.5 /usr/local/lib/node_modules/.staging/daji-c9844e1d
-248 info lifecycle daji@1.0.5~preinstall: daji@1.0.5
-249 silly lifecycle graceful-readlink@1.0.1~preinstall: no script for preinstall, continuing
-250 silly lifecycle commander@2.9.0~preinstall: no script for preinstall, continuing
-251 silly lifecycle daji@1.0.5~preinstall: no script for preinstall, continuing
-252 silly doReverseSerial remove 0
-253 silly doSerial move 0
-254 silly doSerial finalize 3
-255 silly finalize /usr/local/lib/node_modules/daji/node_modules/graceful-readlink
-256 silly finalize /usr/local/lib/node_modules/daji/node_modules/commander
-257 silly finalize /usr/local/lib/node_modules/daji
-258 silly doSerial build 3
-259 silly build graceful-readlink@1.0.1
-260 info linkStuff graceful-readlink@1.0.1
-261 silly linkStuff graceful-readlink@1.0.1 has /usr/local/lib/node_modules/daji/node_modules as its parent node_modules
-262 silly linkStuff graceful-readlink@1.0.1 is part of a global install
-263 silly linkStuff graceful-readlink@1.0.1 is installed into a global node_modules
-264 verbose linkBins graceful-readlink@1.0.1
-265 verbose linkMans graceful-readlink@1.0.1
-266 silly build commander@2.9.0
-267 info linkStuff commander@2.9.0
-268 silly linkStuff commander@2.9.0 has /usr/local/lib/node_modules/daji/node_modules as its parent node_modules
-269 silly linkStuff commander@2.9.0 is part of a global install
-270 silly linkStuff commander@2.9.0 is installed into a global node_modules
-271 verbose linkBins commander@2.9.0
-272 verbose linkMans commander@2.9.0
-273 silly build daji@1.0.5
-274 info linkStuff daji@1.0.5
-275 silly linkStuff daji@1.0.5 has /usr/local/lib/node_modules as its parent node_modules
-276 silly linkStuff daji@1.0.5 is part of a global install
-277 silly linkStuff daji@1.0.5 is installed into a global node_modules
-278 silly linkStuff daji@1.0.5 is installed into the top-level global node_modules
-279 verbose linkBins daji@1.0.5
-280 verbose link bins [ { daji: 'bin/index.js' }, '/usr/local/bin', true ]
-281 verbose linkMans daji@1.0.5
-282 silly gentlyRm /usr/local/bin/daji is being gently removed
-283 silly gentlyRm parent.path = /usr/local
-284 silly gentlyRm parent.managed = /usr/local is in /usr/local
-285 silly gentlyRm target.path =  /usr/local/bin/daji
-286 silly gentlyRm target.symlink = ../lib/node_modules/daji/bin/daji.js
-287 silly gentlyRm target.managed = false
-288 silly gentlyRm target.inParent =  false
-289 verbose unlock done using /Users/cpw/.npm/_locks/staging-3a08f0df5026584d.lock for /usr/local/lib/node_modules/.staging
-290 silly rollbackFailedOptional Starting
-291 silly rollbackFailedOptional Finishing
-292 silly runTopLevelLifecycles Finishing
-293 silly install printInstalled
-294 verbose stack Error: Refusing to delete /usr/local/bin/daji: ../lib/node_modules/daji/bin/daji.js symlink target is not controlled by npm /usr/local
-294 verbose stack     at clobberFail (/usr/local/lib/node_modules/npm/lib/utils/gently-rm.js:162:12)
-294 verbose stack     at isSafeToRm (/usr/local/lib/node_modules/npm/lib/utils/gently-rm.js:152:15)
-294 verbose stack     at /usr/local/lib/node_modules/npm/lib/utils/gently-rm.js:93:5
-294 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:7:26)
-294 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
-294 verbose stack     at /usr/local/lib/node_modules/npm/lib/utils/gently-rm.js:179:14
-294 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/iferr/index.js:11:16
-294 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/iferr/index.js:11:16
-294 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/iferr/index.js:11:16
-294 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/iferr/index.js:11:16
-295 verbose cwd /3_Code/test/webpack/Daji
-296 error Darwin 16.0.0
-297 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "daji" "-g"
-298 error node v6.9.1
-299 error npm  v3.10.8
-300 error path /usr/local/bin/daji
-301 error code EEXIST
-302 error Refusing to delete /usr/local/bin/daji: ../lib/node_modules/daji/bin/daji.js symlink target is not controlled by npm /usr/local
-303 error File exists: /usr/local/bin/daji
-304 error Move it away, and try again.
-305 verbose exit [ 1, true ]
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/3_Code/test/webpack/Daji',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/cpw/.npm/daji/1.0.5/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
+10 info lifecycle daji@1.0.5~prepublish: daji@1.0.5
+11 silly lifecycle daji@1.0.5~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/cpw/.npm/daji/1.0.5/package.tgz',
+12 verbose tar pack   '/3_Code/test/webpack/Daji' ]
+13 verbose tarball /Users/cpw/.npm/daji/1.0.5/package.tgz
+14 verbose folder /3_Code/test/webpack/Daji
+15 verbose addLocalTarball adding from inside cache /Users/cpw/.npm/daji/1.0.5/package.tgz
+16 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd daji@1.0.5
+18 verbose afterAdd /Users/cpw/.npm/daji/1.0.5/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/cpw/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/cpw/.npm/daji/1.0.5/package/package.json written
+21 silly publish { name: 'daji',
+21 silly publish   version: '1.0.5',
+21 silly publish   description: '',
+21 silly publish   main: 'index.js',
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   author: { name: 'cpw220' },
+21 silly publish   license: 'ISC',
+21 silly publish   bin: { daji: 'bin/index.js' },
+21 silly publish   dependencies: { commander: '^2.8.1' },
+21 silly publish   readme: '## 测试\n',
+21 silly publish   readmeFilename: 'readme.md',
+21 silly publish   gitHead: 'b76efedefd34fd16f38860d094393f7c1667e4fa',
+21 silly publish   _id: 'daji@1.0.5',
+21 silly publish   _shasum: 'a80c0dd11804dfa6251af42f249f11101141e364',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name daji
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'daji',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'daji',
+26 silly mapToRegistry   name: 'daji',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/daji
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/cpw/.npm/daji/1.0.5/package.tgz
+30 verbose request uri https://registry.npmjs.org/daji
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 3:14:37 PM
+33 verbose request using bearer token for auth
+34 verbose request id 77ed8a4dbdc4aa95
+35 http request PUT https://registry.npmjs.org/daji
+36 http 403 https://registry.npmjs.org/daji
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Wed, 26 Apr 2017 07:14:37 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-nrt6127-NRT',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1493190877.934857,VS0,VE474',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating /Users/cpw/.npm/registry.npmjs.org/daji on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 1.0.5." : daji
+40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+40 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1044:10)
+40 verbose stack     at emitOne (events.js:96:13)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:965:12)
+41 verbose statusCode 403
+42 verbose pkgid daji
+43 verbose cwd /3_Code/test/webpack/Daji
+44 error Darwin 16.0.0
+45 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+46 error node v6.9.1
+47 error npm  v3.10.8
+48 error code E403
+49 error "You cannot publish over the previously published version 1.0.5." : daji
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
