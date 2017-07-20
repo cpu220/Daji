@@ -5,7 +5,7 @@ const program = require('commander'),
   project = require('../lib/project.js'),
   ios = require('../lib/ios.js'),
   ip = require('../lib/ip.js'),
-
+  gitConfig = require('../lib/gitConfig.js'), 
   color = require('colors-cli/toxic');
 
 
@@ -13,7 +13,7 @@ program
   // .allowUnknownOption()//不报错误
   .version(appInfo.version)
   .usage('妲己是个小能手,什么都可以做,目前还正在学习ing'.x31 + ' [options] <package>')
-  .description('目前正在测试ing，而且此工具基本不对外，呵呵'.x33)
+  .description(`目前正在测试ing，而且此工具基本不对外，呵呵`.x33 +`当前版本${appInfo.version}`) 
   .parse(process.argv);
 
 program
@@ -51,6 +51,19 @@ program
   })
 
  
+program
+  .command('gitConfig [cmd]')
+  .alias('git')
+  .option('-g --get [type]', '查看当前信息') 
+  .option('-m --my [type]', '自己配置') 
+  .option('-w --work [type]', '工作配置') 
+  
+  .description('get this mac\'s ip'.x29)
+  .action(function (cmd, options) { 
+    gitConfig(cmd,options);
+  }).on('--help', function () {
+    console.log('切换配置');
+  })
 
 
 
