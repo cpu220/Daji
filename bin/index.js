@@ -6,7 +6,11 @@ const program = require('commander'),
   ios = require('../lib/ios.js'),
   ip = require('../lib/ip.js'),
   gitConfig = require('../lib/gitConfig.js'), 
+  test = require('../lib/test.js'),
   color = require('colors-cli/toxic');
+
+ 
+  
 
 
 program
@@ -65,7 +69,17 @@ program
     console.log('切换配置');
   })
 
-
+  program
+  .command('testCode [cmd]')
+  .alias('test')
+  .option('-i --init [type]', '查看当前信息') 
+ 
+  .description('just test code'.x29)
+  .action(function (cmd, options) { 
+    test(cmd,options);
+  }).on('--help', function () {
+    console.log('testCode');
+  })
 
 //默认不传参数输出help
 if (!process.argv[2]) {
