@@ -5,11 +5,12 @@ const program = require('commander'),
   project = require('../lib/project.js'),
   ios = require('../lib/ios.js'),
   host = require('../lib/host.js');
-  ip = require('../lib/ip.js'),
+ip = require('../lib/ip.js'),
   git = require('../lib/git.js'),
   test = require('../lib/test.js'),
   _path = require('../lib/path.js'),
   config = require('../lib/config'),
+  date = require('../lib/date'),
 
   color = require('colors-cli/toxic');
 
@@ -65,9 +66,10 @@ program
 
 program
   .command('switchHost [cmd]')
+  .description('简易host切换工具'.x29)
   .alias('host')
   .option('-s --switchHost [type]', '选择切换Host')
-  .option('-r --reset [type]', '重置Host文件')
+  .option('-r --reset [type]', '清空 Host 文件内容（重置）')
   .option('--info [type]', '查看当前Host信息')
   .option('--config [type]', '配置文件操作')
   .action((cmd, options) => {
@@ -103,10 +105,10 @@ program
 program
   .command('path [cmd]')
   .description('当前路径信息'.x29)
-  .action(function (cmd, options) {
+  .action((cmd, options) => {
     _path(cmd, options);
-  }).on('--help', function () {
-    console.log('获取路径信息');
+  }).on('--help', () => {
+    // console.log('获取路径信息');
   })
 
 program
@@ -114,12 +116,22 @@ program
   .description('配置项的相关操作'.x29)
   .option('-i --install [type]', '将当前目录记录的配置文件全部导入工具')
   .option('-b --backup [type]', '将当前配置项全部进行备份')
-  .action(function (cmd, options) {
+  .action((cmd, options) => {
     config(cmd, options);
-  }).on('--help', function () {
-    console.log('获取路径信息');
+  }).on('--help', () => {
+    // console.log('获取路径信息');
   })
 
+program
+  .command('Date [cmd]')
+  .alias('d')
+  .description('时间戳转换工具'.x29)
+  .option('-t --Timestamp [type]', '获取当前时间戳')
+  .action((cmd, options) => {
+    date(cmd, options)
+  }).on('--help', () => {
+    // console.log('获取路径信息');
+  })
 // program
 //   .command('testCode [cmd]')
 //   .alias('test')
