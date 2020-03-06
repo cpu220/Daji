@@ -25,6 +25,7 @@
     "cmdify": "^0.0.4",
     "through": "^2.3.6",
      "getfiles": "1.1.0",
+     "moment":"2.24.0",
      "cfiles": "1.0.3"
   },
   "bugs": {
