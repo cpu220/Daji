@@ -1,8 +1,8 @@
 const fs = require('fs');
-const question = require('./question');
+const question = require('./_IOSQuestion');
 const utils = require('./utils');
 
-const _config = require('../data/config.json');
+const _config = require('../data/ios/config.json');
 const listJSONRoot = _config.panJSON;
 const appJson = require(listJSONRoot);
 

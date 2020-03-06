@@ -1,18 +1,17 @@
-const _configRoot = '../data/config.json';
-const _defaultConfigRoot = '../data/pan.json';
+const _fileList = require('../data/_fileList.json');
 const utils = require('./utils');
-const question = require('./question');
-const _config = require(_configRoot);
-const listJSONRoot = _config.panJSON;
-// const _listJSONRoot = _config.panJSON;
+const _config = require(_fileList.panConfig);
 
-const fs = require('fs');
-const path = require('path');
+const listJSONRoot = _config.panJSON;
+const _configRoot = _fileList.panConfig;
+const _defaultConfigRoot = _fileList.defaultConfigRoot;
+
 const log = utils.msg;
 
 
 class common {
   constructor() {
+
     this.state = {
       json: utils.JSON.get(listJSONRoot)
     }
@@ -160,12 +159,13 @@ class common {
    * @param {any} answers 
    * @memberof common
    */
-  importConfig(answers) {
+  importConfig(answers, root) {
+
     utils.file.readFile({
       path: answers.url,
       isAbsolute: false,
     }).then((data) => {
-      utils.file.reset(listJSONRoot, data);
+      utils.file.reset(root || listJSONRoot, data);
     }).catch(err => console.log(err))
   }
   /**
@@ -174,14 +174,18 @@ class common {
    * @param {any} answers 
    * @memberof common
    */
-  exportsConfig(answers) {
-    utils.file.readFile({
-      path: listJSONRoot,
-      isAbsolute: true
-    }).then((data) => {
-      utils.file.reset(answers.url, data);
-      log.success('== success ==');
-    }).catch(err =>log.error(err));
+  async exportsConfig(answers, root) {
+    try {
+       const data = await utils.file.readFile({
+         path: root || listJSONRoot,
+         isAbsolute: true
+       });
+       await utils.file.reset(answers.url, data);
+       log.success('== success ==');
+       return data;
+    } catch (error) {
+      log.error(error)
+    } 
   }
   /**
    * 将默认目录更改为自定义目录
@@ -213,15 +217,15 @@ class common {
    * @param {any} answers 
    * @memberof common
    */
-  async useThisDirFile(answers) {
-    
+  async useThisDirFile(answers, root) {
+
     const url = `./${answers.fileName}`;
     utils.file.readFile({
       path: url
     }).then(data => {
-      utils.file.reset(listJSONRoot, data);
-      log.success('== success =='); 
-    }); 
+      utils.file.reset(root || listJSONRoot, data);
+      log.success('== success ==');
+    });
   }
 }
 module.exports = new common();

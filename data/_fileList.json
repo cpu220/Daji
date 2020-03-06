@@ -1,0 +1,9 @@
+{
+  "host": "/private/etc/hosts",
+  "hostConfig":"../data/host/config.json",
+  "hostSelectDateBase": "../data/host/selected.json",
+  "panConfig":"../data/ios/config.json",
+  "defaultConfigRoot": "../data/ios/pan.json",
+  "gitConfig":"../data/git/config.json"
+  
+}

@@ -1,9 +1,10 @@
+// ios配置文件
 const path = require('path');
-const fs = require('fs');
+// const fs = require('fs');
 const utils = require('./utils');
 
 const inquirer = require('inquirer');
-const _config = require('../data/config.json');
+const _config = require('../data/ios/config.json');
 const listJSONRoot = _config.panJSON;
 const appJson = require(listJSONRoot);
 const process = require('child_process');
@@ -250,7 +251,7 @@ class question {
   }
   // 输入地址
   async getConfig() {
-    const _this =this;
+    // 筛选当前命令所在的目录下的json、js文件，用于 使用当前目录文件 时，进行选择
     const file = await utils.file.getFile('./', ['json', 'js']);
     const configList = [{
       type: 'list',
@@ -270,14 +271,14 @@ class question {
         value: 'reset'
       }, {
         name: '使用当前目录文件',
-        value: 'this'
+        value: 'thisRoot'
       }],
     }, {
       type: 'input',
       name: 'url',
       message: "请输入地址",
       when: (answers) => {
-        if (answers.type !== 'reset' && answers.type !== 'this') {
+        if (answers.type !== 'reset' && answers.type !== 'thisRoot') {
           return answers.type;
         }
       },
@@ -294,7 +295,7 @@ class question {
       message: '输选择文件名',
       choices:file||[],
       when: (answers) => {
-        if (answers.type === 'this') {
+        if (answers.type === 'thisRoot') {
           return answers.type;
         }
       },
@@ -302,6 +303,7 @@ class question {
         return val;
       }
     }];
+
     return new Promise((resolve, reject) => {
       inquirer.prompt(configList).then((answers) => {
         resolve(answers);
