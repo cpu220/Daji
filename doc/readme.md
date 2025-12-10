@@ -133,3 +133,4 @@ Daji/
 - [ip.md](ip.md) - IP地址获取模块
 - [path.md](path.md) - 路径处理模块
 - [password.md](password.md) - 密码生成模块
+- [rename.md](rename.md) - 文件重命名模块

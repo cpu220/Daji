@@ -11,6 +11,7 @@ const _path = require('../lib/path.js');
 const config = require('../lib/config');
 const date = require('../lib/date');
 const password = require('../lib/password');
+const rename = require('../lib/rename');
 const color = require('colors-cli/toxic');
 
 // 创建 commander 实例
@@ -127,6 +128,17 @@ program
   .action((options, command) => {
     const cmd = command.args[0];
     password(cmd, options);
+  });
+
+// rename 命令
+program
+  .command('rename')
+  .alias('rn')
+  .description('文件重命名工具'.x29)
+  .option('-p, --prefix <string>', '自定义前缀，默认P', 'P')
+  .action((options, command) => {
+    const cmd = command.args[0];
+    rename(cmd, options);
   });
 
 // 默认显示帮助
