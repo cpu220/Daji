@@ -1,14 +1,17 @@
 // ios配置文件
 const path = require('path');
 // const fs = require('fs');
-const utils = require('./utils');
+const utilsModule = require('../../utils/lib/common/utils');
 
+// inquirer v12.0.0 使用 createPromptModule 方法
 const inquirer = require('inquirer');
-const _config = require('../data/ios/config.json');
-const listJSONRoot = _config.panJSON;
+const prompt = inquirer.createPromptModule();
+const _config = require('../../data/ios/config.json');
+const configPath = path.resolve(__dirname, '../../data/ios/config.json');
+const configDir = path.dirname(configPath);
+const listJSONRoot = path.resolve(configDir, _config.panJSON);
 const appJson = require(listJSONRoot);
 const process = require('child_process');
-const iosTools = require('./iosTools');
 
 class question {
   constructor() {
@@ -39,15 +42,41 @@ class question {
     return new Promise((resolve, reject) => {
       console.log('== 正在获取本地设备清单 =='.x34);
       console.log('ps: 首次启动时间较长，请耐心等待... \n');
-      process.exec("xcrun instruments -w 'iphone'", (err, stdout, stderr) => {
-        const arr = stderr.split('\n')
-        const iphoneList = [];
-        for (let i = 1; i < arr.length; i++) {
-          if (/^iPhone/.test(arr[i])) {
-            iphoneList.push(arr[i]);
-          }
+      process.exec("xcrun simctl list devices --json", (err, stdout, stderr) => {
+        if (err) {
+          console.error('获取模拟器列表失败:', err);
+          reject(err);
+          return;
         }
-        resolve(iphoneList.reverse());
+        
+        try {
+          const devicesData = JSON.parse(stdout);
+          const iphoneList = [];
+          
+          // 遍历所有设备类型
+          Object.keys(devicesData.devices).forEach(deviceType => {
+            const devices = devicesData.devices[deviceType];
+            devices.forEach(device => {
+              // 只添加可用的iPhone和iPad模拟器
+              // 检查设备是否可用，并且没有availabilityError
+              if (device.isAvailable === true && 
+                  !device.availabilityError &&
+                  (device.name.startsWith('iPhone') || device.name.startsWith('iPad'))) {
+                // 提取运行时版本，如 iOS-26-0
+                const runtime = deviceType.split('.').pop();
+                // 将设备名称和运行时版本结合，如 "iPhone 17 (iOS-26-0)"
+                iphoneList.push(`${device.name} (${runtime})`);
+              }
+            });
+          });
+          
+          // 去重并排序
+          const uniqueDevices = [...new Set(iphoneList)].sort();
+          resolve(uniqueDevices);
+        } catch (parseError) {
+          console.error('解析模拟器列表失败:', parseError);
+          reject(parseError);
+        }
       });
     })
   }
@@ -58,6 +87,14 @@ class question {
    */
   chooseApp(callback) {
     const list = this.getAppName();
+    
+    // 如果没有回调，返回Promise
+    if (!callback) {
+      return new Promise((resolve) => {
+        this.chooseApp(resolve);
+      });
+    }
+    
     if (list.length === 0) {
       console.log('当前未添加任何app信息,如想添加请查阅文档');
       callback(false);
@@ -73,13 +110,9 @@ class question {
       }];
 
       inquirer.prompt(appList).then(function (answers) {
-        if (!!callback) {
-          callback(answers);
-        }
-
+        callback(answers);
       });
     }
-
   }
   /**
    * 获取本地设备清单，并给与选择
@@ -89,6 +122,14 @@ class question {
    */
   chooseDevice(callback) {
     this.getIphoneList().then(data => {
+      if (!data || data.length === 0) {
+        console.log('未找到可用的模拟器设备，请确保已安装Xcode并创建了模拟器。');
+        if (callback) {
+          callback({ iphone: null });
+        }
+        return;
+      }
+      
       const list = [{
         type: 'list',
         name: 'iphone',
@@ -98,12 +139,17 @@ class question {
           return val;
         }
       }];
-      inquirer.prompt(list).then(function (answers) {
+      prompt(list).then(function (answers) {
         if (!!callback) {
           callback(answers);
         }
       });
-    })
+    }).catch(err => {
+      console.error('获取设备列表失败:', err);
+      if (callback) {
+        callback({ iphone: null });
+      }
+    });
   }
   inputAppInfo() {
     const _this = this;
@@ -111,7 +157,7 @@ class question {
     return new Promise((resolve, reject) => {
       const list = _this.formatInfoList({});
 
-      inquirer.prompt(list).then(function (answers) {
+      prompt(list).then(function (answers) {
         const result = _this.formatInfoListForResult(answers);
         resolve(result);
       });
@@ -133,7 +179,7 @@ class question {
 
     return new Promise((resolve, reject) => {
 
-      inquirer.prompt(list).then(function (answers) {
+      prompt(list).then(function (answers) {
         resolve(answers);
       });
     })
@@ -151,7 +197,7 @@ class question {
     return new Promise((resolve, reject) => {
       const list = _this.formatInfoList(appInfo);
 
-      inquirer.prompt(list).then(function (answers) {
+      prompt(list).then(function (answers) {
         const result = _this.formatInfoListForResult(answers);
         result.name = appInfo.name; // name为主键，不允许修改
         resolve(result);
@@ -252,7 +298,7 @@ class question {
   // 输入地址
   async getConfig() {
     // 筛选当前命令所在的目录下的json、js文件，用于 使用当前目录文件 时，进行选择
-    const file = await utils.file.getFile('./', ['json', 'js']);
+    const file = await utilsModule.file.getFile('./', ['json', 'js']);
     const configList = [{
       type: 'list',
       message: '请选择操作类型',
@@ -305,7 +351,8 @@ class question {
     }];
 
     return new Promise((resolve, reject) => {
-      inquirer.prompt(configList).then((answers) => {
+
+      prompt(configList).then((answers) => {
         resolve(answers);
       }).catch(err => {
         reject(err);

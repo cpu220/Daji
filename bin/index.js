@@ -2,16 +2,16 @@
 
 const { Command } = require('commander');
 const appInfo = require('./../package.json');
-// 暂时注释掉ios模块，因为它依赖于已移除的through模块
-// const ios = require('../lib/ios.js');
-const host = require('../lib/host.js');
-const ip = require('../lib/ip.js');
-const git = require('../lib/git.js');
-const _path = require('../lib/path.js');
-const config = require('../lib/config');
-const date = require('../lib/date');
-const password = require('../lib/password');
-const rename = require('../lib/rename');
+// 引入ios模块
+const ios = require('../src/ios');
+const host = require('../src/host');
+const ip = require('../src/ip');
+const git = require('../src/git');
+const _path = require('../src/path');
+const config = require('../src/config');
+const date = require('../src/date');
+const password = require('../src/password');
+const rename = require('../src/rename');
 const color = require('colors-cli/toxic');
 
 // 创建 commander 实例
@@ -24,27 +24,18 @@ program
   .usage('妲己是个小能手,什么都可以做,目前还正在学习ing'.x31 + ' [options] <package>')
   .description(`目前正在测试ing，而且此工具基本不对外`.x33 + `当前版本${appInfo.version}`);
 
-// ios 模拟器命令 - 暂时注释，因为依赖已移除的through模块
-/*
+// ios 模拟器命令
 program
   .command('ios')
-  .description('这个是基于xcode的模拟器，用来快速在对应iphone上调试H5页面，初期启动需要1分钟左右来安装客户端'.x29)
-  .option('-s, --start [type]', '启动模拟器')
-  .option('-i, --install [type]', '安装客户端（每个simulator的安装包是独立的，所以需要保持simulator的激活状态）')
-  .option('-y, --yanxuan [type]', '启动模拟器并打开严选app')
-  .option('-u, --url [type]', '必须跟参数，直接打开参数所带的H5地址')
-  .option('-t, --translate [type]', 'encode url地址，用于生成更直接在客户端内执行的命令')
-  .option('--add [type]', '对本地list添加app信息')
-  .option('--info [type]', '获取指定app的信息')
-  .option('--remove [type]', '移除指定app')
-  .option('--update [type]', '更新指定app信息')
-  .option('--config [type]', '同步配置项')
+  .description('这个是基于xcode的模拟器，用来快速在对应iphone上调试H5页面'.x29)
+  .option('-s, --start [device]', '启动模拟器，可指定设备名称快速启动')
+  .option('-u, --url <type>', '直接使用Safari打开指定的H5地址')
+  .option('-l, --list', '查看本地已安装的模拟器列表')
   .action((options, command) => {
     // 获取额外的参数作为cmd
     const cmd = command.args[0];
     ios(cmd, options);
   });
-*/
 
 // host 切换命令
 program
