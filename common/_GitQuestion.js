@@ -1,7 +1,7 @@
 // host
 
 
-const utils = require('daji/common/utils');
+const utils = require('./utils');
 
 const inquirer = require('inquirer');
 const _gitConfig = require('../data/git/config.json');

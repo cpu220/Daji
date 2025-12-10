@@ -2,7 +2,8 @@
  * 通用方法合集
  */
 const msg = require('./msgColor');
-const fs = require('fs');
+const fs = require('fs').promises;
+const fsSync = require('fs');
 const path = require('path');
 const process = require('child_process');
 
@@ -12,154 +13,96 @@ const common = function () {
 
 // 文件处理
 common.prototype.file = {
-  set: function (file, message, opation) {
-    return new Promise((resolve, reject) => {
-      const dir = path.resolve(__dirname, file);
-
-      fs.appendFile(dir, message, (err) => {
-        if (err) {
-          reject(err);
-        }
-        resolve();
-      });
-    })
+  // 追加文件内容
+  set: async function (file, message) {
+    const dir = path.resolve(__dirname, file);
+    await fs.appendFile(dir, message);
   },
-  reset: function (file, message) { 
-    return new Promise((resolve, reject) => {
-      const dir = path.resolve(__dirname, file);
-    
-      fs.writeFile(dir, message, (err) => {
-        if (err) {
-          reject(err);
-        }
-        resolve();
-      });
-    });
-
+  
+  // 写入文件内容（覆盖）
+  reset: async function (file, message) {
+    const dir = path.resolve(__dirname, file);
+    await fs.writeFile(dir, message, 'utf8');
   },
 
-  read: function (file) {
-    return new Promise((resolve, reject) => {
-      const dir = path.resolve(__dirname, file);
-      fs.readFile(dir, 'utf8', (err, data) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(data);
-      });
-    });
+  // 读取文件内容
+  read: async function (file) {
+    const dir = path.resolve(__dirname, file);
+    return await fs.readFile(dir, 'utf8');
   },
-  readdir: function (path) {
-    return new Promise((resolve, reject) => {
-      fs.readdir(path, (err, fd) => {
-        if (err) {
-          reject(err);
-        }
-        resolve();
-      });
+  
+  // 读取目录内容
+  readdir: async function (dirPath) {
+    return await fs.readdir(dirPath);
+  },
+  
+  // 同步读取目录内容
+  readdirSync: function (dirPath) {
+    return fsSync.readdirSync(dirPath);
+  },
+
+  // 获取指定目录下指定文件合集
+  getFile: async function (root, fileType) {
+    const files = await fs.readdir(root);
+    return files.filter((name) => {
+      const arr = name.split('.');
+      return fileType.includes(arr[arr.length - 1]);
     });
   },
-  readdirSync: function (path, callback) {
-    return new Promise((resolove, reject) => {
-      const file = fs.readdirSync(path);
-      resolve(file);
-    });
-
+  
+  // 打开文件
+  open: async function (file) {
+    await fs.open(file, 0o666);
   },
-
-  // 获取指定目录下指定文件合集（内部调用方法）
-  getFile: function (root, fileType) {
-    console.log(root);
-    return new Promise((resolve, reject) => {
-      const file = fs.readdirSync(root);
-      const array = file.filter((name) => {
-        const arr = name.split('.');
-        return fileType.includes(arr[arr.length - 1])
-      })
-      resolve(array);
-    })
-  },
-  open: function (file) {
-    return new Promise((resolve, reject) => {
-      fs.open(file, 0666, (err, d) => {
-        if (err) {
-          throw err
-        }
-        resolve()
-      });
-    })
-
-  },
-  create: function (file, message, callback) {
-    const _this = this;
+  
+  // 创建文件
+  async create(file, message) {
     const array = file.split('/');
     const name = array[array.length - 1];
+    
     if (name.indexOf('.') < 0) {
       console.error('当前目录地址格式错误');
       return false;
     }
 
-    var root = file.substring(0, file.indexOf(name));
-
-    common.exists({
-      path: file,
-      callback: function (data) {
-        if (data) {
-          console.error(file + '对应目录文件已存在,创建失败');
-        } else {
-          common.mkdirSync(root, () => {
-            _this.reset(file, message).then(callback());
-          });
-        }
-      }
-    });
+    const root = file.substring(0, file.indexOf(name));
+    
+    try {
+      // 检查文件是否存在
+      await fs.access(file);
+      console.error(`${file}对应目录文件已存在,创建失败`);
+    } catch (err) {
+      // 文件不存在，创建目录和文件
+      await fs.mkdir(root, { recursive: true });
+      await this.reset(file, message);
+    }
   },
+  
+  // 创建目录
   mkdirSync: function (root) {
-    return new Promise((resolve, reject) => {
-      fs.mkdir(root, 0777, (err) => {
-        if (err) {
-          // console.error(root + ' =>对应目录已存在');
-          reject(err);
-        } else {
-          // console.tip(root + '=> 目录已创建完成');
-        }
-        resolve();
-      });
-    });
-
+    try {
+      fsSync.mkdirSync(root, { recursive: true });
+    } catch (err) {
+      // 目录已存在，忽略错误
+    }
   },
+  
   // 判断文件是否存在 
   hasFile: async (obj) => {
-    return new Promise((resolve, reject) => {
-      fs.stat(obj.path, false, (err, stats) => {
-
-        if (!!stats) {
-          resolve(stats)
-        } else {
-          reject();
-        }
-      })
-    })
+    try {
+      return await fs.stat(obj.path);
+    } catch (err) {
+      throw err;
+    }
   },
+  
   // 读取文件
-  readFile: (obj) => {
-    return new Promise((resolve, reject) => {
-      let dir = obj.path;
-      if (obj.isAbsolute) {
-        dir = path.resolve(__dirname, obj.path);
-      }
-
-      fs.readFile(dir, obj.encode || 'utf8', (err, file) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(file);
-        }
-        // resolve(err, file);
-        // obj.callback(err, file);
-      });
-    })
-
+  readFile: async (obj) => {
+    let dir = obj.path;
+    if (obj.isAbsolute) {
+      dir = path.resolve(__dirname, obj.path);
+    }
+    return await fs.readFile(dir, obj.encode || 'utf8');
   },
 
 };
@@ -168,7 +111,7 @@ common.prototype.file = {
 common.prototype.JSON = {
   get: function (file) {
     const dir = path.resolve(__dirname, file);
-    const fileStr = fs.readFileSync(dir);
+    const fileStr = fsSync.readFileSync(dir, 'utf8');
     return JSON.parse(fileStr);
   }
 };
