@@ -136,6 +136,10 @@ program
   .alias('rn')
   .description('文件重命名工具'.x29)
   .option('-p, --prefix <string>', '自定义前缀，默认P', 'P')
+  .option('-d, --dir', '递归处理子目录')
+  .option('-num, --number <number>', '序号位数，默认5位', 5)
+  .option('-type, --type <types...>', '文件类型，支持多个类型，如: jpg png gif')
+  .option('-forceDir, --forceDir', '强制重命名文件夹，从1开始自增')
   .action((options, command) => {
     const cmd = command.args[0];
     rename(cmd, options);
