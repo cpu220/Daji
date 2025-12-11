@@ -101,8 +101,57 @@ program
   .description('时间戳转换工具'.x29)
   .option('-t, --Timestamp [type]', '获取当前时间戳')
   .action((options, command) => {
-    const cmd = command.args[0];
-    date(cmd, options);
+    try {
+      // 直接导入并使用解析函数
+      const { parseInput, formatDate } = require('../src/date/index.js');
+      
+      let date, timestamp, input;
+      
+      // 优先使用options中的Timestamp值
+      if (options.Timestamp !== undefined) {
+        // 合并options.Timestamp和command.args中的所有参数，处理带时间的日期格式
+        input = [options.Timestamp, ...command.args].filter(arg => arg !== undefined).join(' ');
+      } else {
+        // 否则使用命令参数数组
+        const inputArgs = command.args;
+        if (inputArgs.length === 0) {
+          // 无参数时返回当前时间
+          date = new Date();
+          timestamp = date.getTime();
+          const formattedDate = formatDate(date);
+          console.log(`当前日期: ${formattedDate}`);
+          console.log(`时间戳: ${timestamp}`);
+          return;
+        } else if (inputArgs.length === 1) {
+          // 单个参数
+          input = inputArgs[0];
+        } else {
+          // 多个参数（如带时间的日期）
+          input = inputArgs.join(' ');
+        }
+      }
+      
+      if (input !== undefined) {
+        // 尝试解析输入
+        const result = parseInput(input);
+        
+          if (!result) {
+            throw new Error('无效的输入。请提供有效的日期格式或时间戳。');
+          }
+        
+          date = result.date;
+          timestamp = result.timestamp;
+        }
+      
+      // 格式化日期并输出
+      const formattedDate = formatDate(date);
+      console.log(`日期: ${formattedDate}`);
+      console.log(`时间戳: ${timestamp}`);
+      
+    } catch (error) {
+      console.error(error.message);
+      process.exit(1);
+    }
   });
 
 // password 命令

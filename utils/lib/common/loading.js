@@ -1,5 +1,8 @@
 
+const ora = require('ora');
+
 function loader() {
+  this.spinner = null;
   this.state = {
     timer: null,
     loaderList: ['/ ', '| ', '\\ ', '- '],
@@ -14,6 +17,14 @@ function loader() {
       ...options,
       loaderList: options.loaderList || this.state.loaderList
     };
+    
+    // 使用ora创建spinner，保持原有API兼容
+    this.spinner = ora({
+      text: '',
+      spinner: {
+        frames: this.state.loaderList
+      }
+    });
   };
 
   // 启动加载动画
@@ -23,33 +34,22 @@ function loader() {
     }
 
     this.state.isRunning = true;
-    const { loaderList } = this.state;
-    const length = loaderList.length;
-    let i = 0;
-
-    // 清除之前的定时器
-    if (this.state.timer) {
-      clearInterval(this.state.timer);
+    
+    // 初始化spinner如果还没有初始化
+    if (!this.spinner) {
+      this.init();
     }
-
-    // 开始动画
-    this.state.timer = setInterval(() => {
-      // 清除当前行
-      process.stdout.write('\r');
-      // 写入新的动画帧
-      process.stdout.write(loaderList[i % length]);
-      i++;
-    }, 300);
+    
+    this.spinner.start();
   };
 
   // 结束加载动画
   this.end = () => {
-    if (this.state.timer) {
-      clearInterval(this.state.timer);
-      this.state.timer = null;
+    if (this.spinner) {
+      this.spinner.stop();
     }
     this.state.isRunning = false;
-    // 清除当前行
+    // 清除当前行，保持原有行为
     process.stdout.write('\r');
     process.stdout.write('  '); // 清除动画效果
     process.stdout.write('\r');

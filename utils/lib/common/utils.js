@@ -2,8 +2,7 @@
  * 通用方法合集
  */
 const msg = require('./msgColor');
-const fs = require('fs').promises;
-const fsSync = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const process = require('child_process');
 
@@ -38,7 +37,7 @@ common.prototype.file = {
   
   // 同步读取目录内容
   readdirSync: function (dirPath) {
-    return fsSync.readdirSync(dirPath);
+    return fs.readdirSync(dirPath);
   },
 
   // 获取指定目录下指定文件合集
@@ -81,7 +80,7 @@ common.prototype.file = {
   // 创建目录
   mkdirSync: function (root) {
     try {
-      fsSync.mkdirSync(root, { recursive: true });
+      fs.mkdirSync(root, { recursive: true });
     } catch (err) {
       // 目录已存在，忽略错误
     }
@@ -117,18 +116,16 @@ common.prototype.JSON = {
 };
 
 // 工具类
+const dateFns = require('date-fns');
+
 common.prototype.tools = {
   formatDate: function (date, type, format) {
-    const arr = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
-    const D = date.getDate(),
-      M = date.getMonth() + 1,
-      Y = date.getFullYear(),
-      h = date.getHours(),
-      m = date.getMinutes(),
-      s = date.getSeconds();
-
-    const _date = `${Y}-${arr[M] || M}-${arr[D] || D}`.split('-').join(format),
-      _time = `${arr[h] || h}:${arr[m] || m}:${arr[s] || s}`
+    // 使用date-fns替代自定义日期格式化
+    const dateStr = dateFns.format(date, 'yyyy-MM-dd');
+    const timeStr = dateFns.format(date, 'HH:mm:ss');
+    
+    const _date = dateStr.split('-').join(format),
+      _time = timeStr
     return {
       date: _date,
       time: _time,

@@ -17,10 +17,14 @@
   },
   "dependencies": {
     "ansi-escapes": "^4.3.2",
+    "chalk": "^4.1.2",
     "colors-cli": "^1.0.32",
     "commander": "^12.0.0",
+    "date-fns": "^4.1.0",
+    "fs-extra": "^11.3.2",
     "inquirer": "^8.2.5",
     "lodash": "^4.17.21",
+    "ora": "^5.4.1",
     "through": "^2.3.8"
   },
   "bugs": {
