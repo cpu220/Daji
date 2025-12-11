@@ -1,3 +1,5 @@
 {
-   
+  "dev": "127.0.0.1 localhost\n::1 localhost\n192.168.1.100 dev-server.com",
+  "test": "127.0.0.1 localhost\n192.168.1.101 test-server.com",
+  "prod": "127.0.0.1 localhost\n8.8.8.8 google.com"
 }

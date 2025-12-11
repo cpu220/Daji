@@ -16,11 +16,12 @@
     "daji": "bin/index.js"
   },
   "dependencies": {
+    "ansi-escapes": "^4.3.2",
     "colors-cli": "^1.0.32",
-    "inquirer": "^12.0.0",
     "commander": "^12.0.0",
+    "inquirer": "^8.2.5",
     "lodash": "^4.17.21",
-    "ansi-escapes": "^4.3.2"
+    "through": "^2.3.8"
   },
   "bugs": {
     "url": "https://github.com/cpu220/Daji/issues"

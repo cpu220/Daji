@@ -1,5 +1,5 @@
-const _fileList = require('../data/_fileList.json');
-const utils = require('./utils');
+const _fileList = require('../../data/_fileList.json');
+const utils = require('../../utils');
 const _config = require(_fileList.panConfig);
 
 const listJSONRoot = _config.panJSON;
@@ -11,10 +11,18 @@ const log = utils.msg;
 
 class common {
   constructor() {
-
+    // 构造函数中不能使用await，在需要的方法中单独读取
     this.state = {
-      json: utils.JSON.get(listJSONRoot)
+      json: null
     }
+  }
+  
+  // 初始化JSON数据
+  async initJSON() {
+    if (!this.state.json) {
+      this.state.json = await utils.JSON.get(listJSONRoot);
+    }
+    return this.state.json;
   }
 
   /**
@@ -23,15 +31,18 @@ class common {
    * @returns 
    * @memberof common
    */
-  getList() {
-    return new Promise((resolve, reject) => {
-      utils.file.read(listJSONRoot).then((file) => {
-        resolve(file);
-      });
-    }).catch((err) => {
-      reject(err);
-    })
-
+  async getList() {
+    await this.initJSON();
+    return this.state.json;
+  }
+  
+  /**
+   * 获取单条数据
+   */
+  async getOne(param) {
+    const { id } = param;
+    await this.initJSON();
+    return this.state.json[id];
   }
 
   /**
@@ -41,28 +52,27 @@ class common {
    * @returns 
    * @memberof common
    */
-  addApp(info) {
+  async addApp(info) {
+    await this.initJSON();
     const {
       json
     } = this.state;
 
-    return new Promise((resolve, reject) => {
-      const result = this.judgeInfo(info, json);
+    try {
+      const result = await this.judgeInfo(info, json);
       if (!result.has) {
         json.list.push(info);
-        utils.file.reset(listJSONRoot, JSON.stringify(json, null, 2)).then(() => {
-          console.log(`${info.name} 添加成功`);
-          resolve();
-        });
+        await utils.file.reset(listJSONRoot, JSON.stringify(json, null, 2));
+        console.log(`${info.name} 添加成功`);
+        return;
       } else if (result.errorCode === '1') {
-        reject('有重复')
+        throw new Error('有重复');
       } else if (result.errorCode === '2') {
         // 暂时不做处理，基本不会出现信息不全的问题。除非手动改配置文件
-        // console.log('信息不全')
-        // reject(); 
       }
-    });
-
+    } catch (error) {
+      throw error;
+    }
   }
 
   /**

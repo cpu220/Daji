@@ -1,11 +1,11 @@
 // host
 
 
-const utils = require('./utils');
+const utils = require('../../utils/lib/common/utils');
 
 const inquirer = require('inquirer');
-const _hostConfig = require('../data/host/config.json');
-const selectedList = require('../data/host/selected.json');
+const _hostConfig = require('../../data/host/config.json');
+const selectedList = require('../../data/host/selected.json');
 // const listJSONRoot = _config.panJSON;
 
 
@@ -18,36 +18,41 @@ class question {
 
   }
   async chooseHost(callback) {
-
-
     const hostList = [];
 
+    // 确保获取所有配置项
     for (const i in _hostConfig) {
       hostList.push(i);
     }
 
-    // const list = [{
-    //   type: 'list',
-    //   name: 'hosts',
-    //   message: '请选择Host列表',
-    //   choices: hostList,
-    //   filter: (val) => {
-    //     return _hostConfig[val];
-    //   }
-    // }]
+    // 检查是否有可用的host配置
+    if (hostList.length === 0) {
+      console.log('警告：未找到任何host配置');
+      return { hostList: [] };
+    }
 
     const configList =[{
-      type:'checkbox',
+      type:'list',
       name:'hostList',
-      message:'选择要使用的host列表',
-      default: selectedList || [],
+      message:'请选择要使用的host配置（单选）',
+      default: (selectedList && selectedList[0]) || hostList[0],
       choices: hostList,
+      // 将单选结果转换为数组格式以兼容现有代码
+      filter: function(val) {
+        return [val];
+      }
     }]
 
     return new Promise((resolve, reject) => {
       inquirer.prompt(configList).then((answers) => {
-        resolve(answers);
+        // 确保即使取消选择也返回一个有效对象
+        if (!answers || !answers.hostList) {
+          resolve({ hostList: [] });
+        } else {
+          resolve(answers);
+        }
       }).catch(err => {
+        console.error('选择过程中出错:', err);
         reject(err);
       });
     });

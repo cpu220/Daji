@@ -1,5 +1,5 @@
 const path = require('path');
-const utils = require('../common/utils');
+const utils = require('../../utils/lib/common/utils');
 
 const log = utils.msg;
 

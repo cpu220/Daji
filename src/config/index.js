@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs').promises;
-const utils = require('../common/utils');
+const utils = require('../../utils/lib/common/utils');
 
 const log = utils.msg;
 const _defaultConfigFileName = 'gitConfig.json';

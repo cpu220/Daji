@@ -1,10 +1,10 @@
 // host
 
 
-const utils = require('./utils');
+const utils = require('../../utils/lib/common/utils');
 
 const inquirer = require('inquirer');
-const _gitConfig = require('../data/git/config.json');
+const _gitConfig = require('../../data/git/config.json');
 // const listJSONRoot = _config.panJSON;
 
 

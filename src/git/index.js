@@ -1,11 +1,11 @@
 const path = require('path')
 const process = require('child_process');
 
-const utils = require('../common/utils');
-const _fileList = require('../data/_fileList.json');
-const question = require('../common/_gitQuestion');
-const appListManage = require('../common/appListManage');
-const _gitConfig = require('../data/git/config.json');
+const utils = require('../../utils/lib/common/utils');
+const _fileList = require('../../data/_fileList.json');
+const _gitQuestion = require('./question');
+const _appListManage = require('./appListManage');
+const _gitConfig = require('../../data/git/config.json');
 
 
 const log = utils.msg;
@@ -20,7 +20,8 @@ class App {
     this.state = {
       cmd, options
     }
-
+    this.appListManage = new _appListManage();
+    this.question = _gitQuestion; // question.js导出的是实例，不需要再次new
   }
 
   init() {
@@ -62,7 +63,7 @@ class App {
 
   // 选择git账号
   async onSwitchGitCofig() {
-    const answer = await question.chooseGitAccount();
+    const answer = await this.question.chooseGitAccount();
     this.resetConfig(answer.gitConfig);
   }
 
@@ -70,16 +71,16 @@ class App {
 
   // 配置项操作
   async onConfig() {
-    const answer = await question.getConfig()
+    const answer = await this.question.getConfig()
     const { type } = answer;
     if (type === 'import') {
-      appListManage.useThisDirFile(answer, _fileList.gitConfig);
+      this.appListManage.useThisDirFile(answer, _fileList.gitConfig);
     } else if (type === 'export') {
       const url = `${path.resolve('./')}/${_defaultConfigFileName}`
 
-      await appListManage.exportsConfig({ url }, _fileList.gitConfig);
+      await this.appListManage.exportsConfig({ url }, _fileList.gitConfig);
     } else if (type === 'update') {
-      const answer = await question.updateGitConfig(_gitConfig);
+      const answer = await this.question.updateGitConfig(_gitConfig);
       const { gitKey, name, email} = answer
       _gitConfig[gitKey].name = name;
       _gitConfig[gitKey].email = email;

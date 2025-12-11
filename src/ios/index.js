@@ -2,10 +2,10 @@
 
 const process = require('child_process');
 const color = require('colors-cli/toxic');
-const iosTools = require('./tools');
+const tools = require('./tools');
 const question = require('./question');
-const utilsModule = require('../../utils/lib/common/utils');
-const log = utilsModule.msg;
+const utils = require('../../utils');
+const log = utils.msg;
 
 
 class App {
@@ -18,6 +18,8 @@ class App {
       cmd,
       options
     };
+    this.tools = tools;
+    this.question = question;
   }
 
   init() {
@@ -37,7 +39,7 @@ class App {
 
   onList() {
     // 查看本地已安装的模拟器列表
-    question.getIphoneList().then(devices => {
+    this.question.getIphoneList().then(devices => {
       console.log('\n== 本地已安装的模拟器列表 ==\n'.x34);
       devices.forEach((device, index) => {
         console.log(`${index + 1}. ${device}`);
@@ -54,10 +56,10 @@ class App {
     // 2. 未提供设备名称时，显示列表选择设备
     if (param && param !== true) {
       // 提供了设备名称，直接启动
-      iosTools.openIphoneByName(param);
+      this.tools.openIphoneByName(param);
     } else {
       // 未提供设备名称，显示列表选择
-      iosTools.openIphone();
+      this.tools.openIphone();
     }
   }
 
@@ -66,7 +68,7 @@ class App {
       log.warn('检测到url 没有带http|https ,请确认是否为遗漏');
     }
     // 直接使用safari打开url
-    iosTools.openUrl(url);
+    this.tools.openUrl(url);
   }
 
 }
